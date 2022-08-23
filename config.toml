@@ -1,0 +1,27 @@
+baseURL = "https://timrekelj.xyz"
+languageCode = "en-us"
+title = "Tim Rekelj"
+themesDir = "themes"
+theme = "hugo-winston-theme"
+
+pygmentsCodeFences = true
+pygmentsCodefencesGuessSyntax = true
+pygmentsUseClasses = true
+paginate = 3
+
+[module]
+  [module.hugoVersion]
+    extended = true
+    min = "0.55.0"
+
+[params]
+  twitter_handle = "@timrekelj"
+
+  showAuthorOnHomepage = true
+  showAuthorOnPosts = false
+  showPostsOnHomepage = false
+
+  addFrame = true
+  addDot = true
+
+  highlightColor = '#6D9F71'

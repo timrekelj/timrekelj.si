@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>blog on Tim Rekelj</title>
+    <link>https://timrekelj.xyz/objave/</link>
+    <description>Recent content in blog on Tim Rekelj</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 23 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://timrekelj.xyz/objave/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Doeran svet</title>
+      <link>https://timrekelj.xyz/objave/doeran-svet/</link>
+      <pubDate>Tue, 23 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://timrekelj.xyz/objave/doeran-svet/</guid>
+      <description>Doeran svet in podobne pizdarije Se bom kmalu lotil proper pisanja.</description>
+    </item>
+    
+  </channel>
+</rss>
