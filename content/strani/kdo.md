@@ -22,10 +22,10 @@ Sem open source software navdušenec in se aktivno izogibam "big bad" podjetjem,
 
 Razlogi za ta blog:
 
-1. nadgradnja moje komunikativnosti,
-2. dokumentiranje vsega novega ki se naučim in želim deliti s svetom (oz. mojim trem prijateljem, ki jim o tem tako ali tako blebetam v živo)
-3. neuporabljena domena me je spravljala ob živce,
-4. zakaj pa ne
+ - nadgradnja moje komunikativnosti,
+ - dokumentiranje vsega novega ki se naučim in želim deliti s svetom (oz. mojim trem prijateljem, ki jim o tem tako ali tako blebetam v živo)
+ - neuporabljena domena me je spravljala ob živce,
+ - zakaj pa ne
 
 Tale opis nima ne glave ne konca ampak upam da ste izvedeli kaj več o meni. Verjetno ne.
 
