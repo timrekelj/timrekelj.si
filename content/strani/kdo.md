@@ -1,6 +1,6 @@
 ---
 title: 'jst'
-image: 
+image: 'images/aboutme.jpeg'
 menu:
   main:
     name: "kdo?"
@@ -8,6 +8,6 @@ menu:
 
 # Tim Rekelj
 
-A res želite vedeti kaj več?
+Pa koga boli kur-
 
-Hec hec, bom napisal, samo da dobim inspiracijo.
+Hec hec, dobite, samo najprej rabim inspiracijo.
