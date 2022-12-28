@@ -5,6 +5,5 @@ description: 'Upam da ne bo spet to edini post na blogu za naslednje pol leta. '
 image: images/earth.jpeg
 ---
 
-# Doeran svet in podobne pizdarije
-
+# Pozdrav svetu
 Se bom kmalu lotil proper pisanja.
