@@ -2,21 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://timrekelj.xyz/objave/</loc>
+    <loc>https://timrekelj.si/posts/</loc>
     <lastmod>2022-08-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://timrekelj.xyz/objave/doeran-svet/</loc>
+    <loc>https://timrekelj.si/posts/hello-world/</loc>
     <lastmod>2022-08-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://timrekelj.xyz/</loc>
+    <loc>https://timrekelj.si/</loc>
     <lastmod>2022-08-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://timrekelj.xyz/categories/</loc>
+    <loc>https://timrekelj.si/categories/</loc>
   </url><url>
-    <loc>https://timrekelj.xyz/strani/kdo/</loc>
+    <loc>https://timrekelj.si/pages/who/</loc>
   </url><url>
-    <loc>https://timrekelj.xyz/strani/</loc>
+    <loc>https://timrekelj.si/pages/</loc>
   </url><url>
-    <loc>https://timrekelj.xyz/tags/</loc>
+    <loc>https://timrekelj.si/tags/</loc>
   </url>
 </urlset>

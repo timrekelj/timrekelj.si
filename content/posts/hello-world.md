@@ -1,5 +1,5 @@
 ---
-title: Doeran svet
+title: Hello world
 date: 2022-08-23
 description: 'Upam da ne bo spet to edini post na blogu za naslednje pol leta. '
 image: images/earth.jpeg

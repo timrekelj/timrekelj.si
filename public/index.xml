@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Še Cankar ni vedel, kaj dela on Tim Rekelj</title>
-    <link>https://timrekelj.xyz/</link>
-    <description>Recent content in Še Cankar ni vedel, kaj dela on Tim Rekelj</description>
+    <title>I&#39;d rather be myself on Tim Rekelj</title>
+    <link>https://timrekelj.si/</link>
+    <description>Recent content in I&#39;d rather be myself on Tim Rekelj</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 23 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://timrekelj.xyz/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 23 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://timrekelj.si/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Doeran svet</title>
-      <link>https://timrekelj.xyz/objave/doeran-svet/</link>
+      <title>Hello world</title>
+      <link>https://timrekelj.si/posts/hello-world/</link>
       <pubDate>Tue, 23 Aug 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://timrekelj.xyz/objave/doeran-svet/</guid>
-      <description>Doeran svet in podobne pizdarije Se bom kmalu lotil proper pisanja.</description>
+      <guid>https://timrekelj.si/posts/hello-world/</guid>
+      <description>Pozdrav svetu Se bom kmalu lotil proper pisanja.</description>
     </item>
     
     <item>
-      <title>jst</title>
-      <link>https://timrekelj.xyz/strani/kdo/</link>
+      <title>me</title>
+      <link>https://timrekelj.si/pages/who/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://timrekelj.xyz/strani/kdo/</guid>
-      <description>Tim Rekelj Pa koga boli kur-
-Hec hec, dobite, samo najprej rabim inspiracijo.</description>
+      <guid>https://timrekelj.si/pages/who/</guid>
+      <description>hmmmmm  Tukaj bom opisal bolj profesionalno stran mojega življenja, ker, če iščeš razlog za mojo spremembo priimka v petem razredu, bo treba najprej častit kakšno pijačo :)
+ Uglavnem, sem človek redkih besed in velikih ciljev (na besedah še delam, ne da se vse takoj). Zaenkrat še kar ujet v izobraževalnem sistemu (in upajmo da tako ostane čisto do doktorata) in sicer ponosen obiskovalec Fakultete za računalništvo in informatiko nasproti živalskega vrta v Ljubljani.</description>
     </item>
     
   </channel>

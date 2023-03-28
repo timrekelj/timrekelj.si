@@ -1,9 +1,9 @@
 ---
-title: 'jst'
+title: 'me'
 image: 'images/aboutme.jpeg'
 menu:
   main:
-    name: "kdo?"
+    name: "who?"
 ---
 
 # hmmmmm

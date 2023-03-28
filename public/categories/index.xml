@@ -2,9 +2,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Tim Rekelj</title>
-    <link>https://timrekelj.xyz/categories/</link>
+    <link>https://timrekelj.si/categories/</link>
     <description>Recent content in Categories on Tim Rekelj</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://timrekelj.xyz/categories/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://timrekelj.si/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

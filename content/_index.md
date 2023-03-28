@@ -1,6 +1,6 @@
 ---
-title: Še Cankar ni vedel, kaj dela
-description: Lahko bi hodil brez roke, brez očesa, da celo brez nosa bi se dalo živeti... A kadar človek nima prepričanja, tedaj je samo še senca brez telesa, knjiga brez vsebine...
+title: I'd rather be myself
+description: he said. "Myself and nasty. Not somebody else, however jolly."
 
 ---
-"Lahko bi hodil brez roke, brez očesa, da celo brez nosa bi se dalo živeti... A kadar človek nima prepričanja, tedaj je samo še senca brez telesa, knjiga brez vsebine..."
+he said. "Myself and nasty. Not somebody else, however jolly."
