@@ -6,21 +6,18 @@ menu:
     name: "who?"
 ---
 
-# hmmmmm
+Hi there! My name is **Tim Rekelj** and I'm a 2nd grade computer science student at **University of Ljubljana, Faculty of Computer and Information Science**. I've always been fascinated by the potential of technology to solve complex problems and improve people's lives.
 
-> Tukaj bom opisal bolj profesionalno stran mojega življenja, ker, če iščeš razlog za mojo spremembo priimka v petem razredu, bo treba najprej častit kakšno pijačo :)
+Throughout my studies, I've gained a solid foundation in programming languages and technologies such as *Python*, *Java*, *Javascript/Typescript*, *C*, *Vue*, *Docker*, *Vagrant*, *Ansible*, as well as an understanding of computer systems, algorithms and data structures. But what really drives me is the challenge of using these skills to create innovative solutions to real-world problems.
 
-Uglavnem, sem človek redkih besed in velikih ciljev (na besedah še delam, ne da se vse takoj). Zaenkrat še kar ujet v izobraževalnem sistemu (in upajmo da tako ostane čisto do doktorata) in sicer ponosen obiskovalec **Fakultete za računalništvo in informatiko** nasproti živalskega vrta v Ljubljani. Presenetljivo, tam nisem zaradi *keša* ampak ker imamo nadpovprečno okusno kavo in hiter wifi (komu lažem, wifi je počasnejši kot pošiljanje pisem z golobi). 
+When I'm not in class, you can often find me participating in hackathons, where I enjoy putting my skills to the test and collaborating with other like-minded individuals. I'm also an active member of FRI student organisation [**FRIKI**](https://www.instagram.com/sofri_friki/), where I love sharing my knowledge and working on projects with my peers.
 
-Sem open source software navdušenec in se aktivno izogibam "big bad" podjetjem, pri katerih se ne strinjam z njihovimi aktivnostmi (tebe gledam Facebo-    Meta, fak) . Z mojim delom v prihodnosti želim spremeniti svet na bolje in medtem uživati tako v profesionalnem kot v zasebnem življenju.
+In my 2.5 years working at [**XLAB**](https://xlab.si/), I helped with building multiple projects. The technologies I used the most are *Docker*, *Vagrant*, *Python* and *Ansible*. I enjoy collaborating with other members of the team to find creative solutions to complex problems, and I'm always looking for ways to expand my knowledge and skills in the field.
 
-Razlogi za ta blog:
+Ultimately, my goal is to use my passion for technology to make a positive impact on the world. I believe that technology has the power to make a real difference in people's lives. I'm excited to continue learning and growing in the field of computer science, and I can't wait to see what the future holds!
 
- - nadgradnja moje komunikativnosti,
- - dokumentiranje vsega novega ki se naučim in želim deliti s svetom (oz. mojim trem prijateljem, ki jim o tem tako ali tako blebetam v živo)
- - neuporabljena domena me je spravljala ob živce,
- - zakaj pa ne
-
-Tale opis nima ne glave ne konca ampak upam da ste izvedeli kaj več o meni. Verjetno ne.
-
-Lahko noč pa Tim ma vas rad!
+P.S. I am writing my blog because:
+ - I want to upgrade my communication skills and english language
+ - the unused domain is driving me crazy
+ - I want to document the new stuff I learn
+ - why not
