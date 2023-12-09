@@ -1,6 +1,6 @@
 ---
-title: I'd rather be myself
-description: he said. "Myself and nasty. Not somebody else, however jolly."
+title: "Forty-Two"
+description: said Deep Thought, with infinite majesty and calm.
 
 ---
-he said. "Myself and nasty. Not somebody else, however jolly."
+said Deep Thought, with infinite majesty and calm.

@@ -1,9 +1,9 @@
 ---
 title: Hello world
-date: 2022-08-23
-description: 'Upam da ne bo spet to edini post na blogu za naslednje pol leta. '
+date: 2023-12-09
+description: 'I hope this is not the last post on this blog for the next few years.'
 image: images/earth.jpeg
 ---
 
-# Pozdrav svetu
-Se bom kmalu lotil proper pisanja.
+# Hello world
+I hope this is not the last post on this blog for the next few years.
