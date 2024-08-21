@@ -5,16 +5,14 @@
     <link>https://timrekelj.si/pages/</link>
     <description>Recent content in Pages on Tim Rekelj</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://timrekelj.si/pages/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <atom:link href="https://timrekelj.si/pages/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>me</title>
       <link>https://timrekelj.si/pages/who/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://timrekelj.si/pages/who/</guid>
-      <description>hmmmmm Tukaj bom opisal bolj profesionalno stran mojega življenja, ker, če iščeš razlog za mojo spremembo priimka v petem razredu, bo treba najprej častit kakšno pijačo :)
-Uglavnem, sem človek redkih besed in velikih ciljev (na besedah še delam, ne da se vse takoj). Zaenkrat še kar ujet v izobraževalnem sistemu (in upajmo da tako ostane čisto do doktorata) in sicer ponosen obiskovalec Fakultete za računalništvo in informatiko nasproti živalskega vrta v Ljubljani.</description>
+      <description>Hi there! My name is Tim Rekelj and I&amp;rsquo;m a 2nd grade computer science student at University of Ljubljana, Faculty of Computer and Information Science. I&amp;rsquo;ve always been fascinated by the potential of technology to solve complex problems and improve people&amp;rsquo;s lives.&#xA;Throughout my studies, I&amp;rsquo;ve gained a solid foundation in programming languages and technologies such as Python, Java, Javascript/Typescript, C, Vue, Docker, Vagrant, Ansible, as well as an understanding of computer systems, algorithms and data structures.</description>
     </item>
-    
   </channel>
 </rss>
