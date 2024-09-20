@@ -6,12 +6,14 @@ menu:
     name: "who?"
 ---
 
-Hi there! My name is **Tim Rekelj** and I'm a 2nd grade computer science student at **University of Ljubljana, Faculty of Computer and Information Science**. I've always been fascinated by the potential of technology to solve complex problems and improve people's lives.
+Hello! I'm **Tim Rekelj**, currently in my third year studying **Computer Science at the University of Ljubljana, Faculty of Computer and Information Science**. I'm passionate about technology's ability to solve complex challenges and improve our lives.
 
-Throughout my studies, I've gained a solid foundation in programming languages and technologies such as *Python*, *Java*, *Javascript/Typescript*, *C*, *Vue*, *Docker*, *Vagrant*, *Ansible*, as well as an understanding of computer systems, algorithms and data structures. But what really drives me is the challenge of using these skills to create innovative solutions to real-world problems.
+Over the course of my studies, I’ve developed a strong foundation in various programming languages and technologies, including **Python**, **Java**, **JavaScript/TypeScript**, **C**, **Odin**, **Vue**, **Docker** etc. while also deepening my understanding of computer systems, algorithms, and data structures.
 
-When I'm not in class, you can often find me participating in hackathons, where I enjoy putting my skills to the test and collaborating with other like-minded individuals. I'm also an active member of FRI student organisation [**FRIKI**](https://www.instagram.com/sofri_friki/), where I love sharing my knowledge and working on projects with my peers.
+From 2021 to 2023, I worked at [**XLAB**](https://xlab.si/), where I contributed to several web development projects, frequently using **Docker**, **Vagrant**, **Python**, **Angular** and **Ansible**.
+In the summer of 2023, I ventured into a startup called [**Prskalnik**](https://prskalnik.si) with two of my friends. We worked with **Vue** and **Supabase**.
+While initially focused on web development, my interests gradually shifted towards lower-level programming and high-performance computing.
+As a result, I stepped away from **Prskalnik** and got into [**Razorpeak**](https://razorpeak.io), where I now work with high-performance **Java**.
 
-In my 2.5 years working at [**XLAB**](https://xlab.si/), I helped with building multiple projects. The technologies I used the most are *Docker*, *Vagrant*, *Python* and *Ansible*. I enjoy collaborating with other members of the team to find creative solutions to complex problems, and I'm always looking for ways to expand my knowledge and skills in the field.
-
-Ultimately, my goal is to use my passion for technology to make a positive impact on the world. I believe that technology has the power to make a real difference in people's lives. I'm excited to continue learning and growing in the field of computer science, and I can't wait to see what the future holds!
+In my spare time, I’m diving into languages like **Rust** and **Odin** to further explore lower-level systems programming.
+Over the years, as I’ve worked with and developed a variety of software, I’ve observed a decline in the focus on program quality. As I continue to grow in my career, my core objective is to create software that places the highest importance on both quality and performance.
