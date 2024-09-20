@@ -13,7 +13,7 @@ Over the course of my studies, I’ve developed a strong foundation in various p
 From 2021 to 2023, I worked at [**XLAB**](https://xlab.si/), where I contributed to several web development projects, frequently using **Docker**, **Vagrant**, **Python**, **Angular** and **Ansible**.
 In the summer of 2023, I ventured into a startup called [**Prskalnik**](https://prskalnik.si) with two of my friends. We worked with **Vue** and **Supabase**.
 While initially focused on web development, my interests gradually shifted towards lower-level programming and high-performance computing.
-As a result, I stepped away from **Prskalnik** and got into [**Razorpeak**](https://razorpeak.io), where I now work with high-performance **Java**.
+As a result, I stepped away from **Prskalnik** and got into [**Razorpeak**](https://www.razorpeak.io), where I now work with high-performance **Java**.
 
 In my spare time, I’m diving into languages like **Rust** and **Odin** to further explore lower-level systems programming.
 Over the years, as I’ve worked with and developed a variety of software, I’ve observed a decline in the focus on program quality. As I continue to grow in my career, my core objective is to create software that places the highest importance on both quality and performance.
