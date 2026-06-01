@@ -1,0 +1,7 @@
+services:
+  timrekelj:
+    build: .
+    image: timrekelj:latest
+    ports:
+      - "1542:80"
+    restart: unless-stopped
