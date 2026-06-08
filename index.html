@@ -24,7 +24,7 @@
         width: 100%;
         height: 100%;
         z-index: -1;
-        opacity: 0.12;
+        opacity: 0.2;
       }
       .card-wrapper {
         display: flex;
@@ -39,7 +39,6 @@
       }
       .card {
         background: #111;
-        border: 1px solid #222;
         border-radius: 16px;
         padding: 40px 50px;
         text-align: center;
@@ -80,6 +79,11 @@
         color: #ff3d00;
         font-weight: bold;
         text-decoration: none;
+        position: relative;
+        transition: text-shadow 0.3s ease;
+        text-shadow: 0 0 15px rgba(255, 61, 0, 0.8), 0 0 30px rgba(255, 61, 0, 0.4);
+      }
+      .calda:hover {
       }
     </style>
   </head>
@@ -131,11 +135,32 @@
           return fract(sin(dot(p, vec3(12.9898, 78.233, 45.164))) * 43758.5453);
         }
 
+        float noise(vec2 p) {
+          vec2 i = floor(p);
+          vec2 f = fract(p);
+          vec2 u = f * f * (3.0 - 2.0 * f);
+          float a = random(i);
+          float b = random(i + vec2(1.0, 0.0));
+          float c = random(i + vec2(0.0, 1.0));
+          float d = random(i + vec2(1.0, 1.0));
+          return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
+        }
+
+        float fbm(vec2 p) {
+          float v = 0.0, a = 0.5;
+          for (int i = 0; i < 5; i++) {
+            v += a * noise(p);
+            p *= 2.0;
+            a *= 0.5;
+          }
+          return v;
+        }
+
         void main() {
-          float px = 8.0;
+          float px = 6.0;
           vec2 coord = floor(gl_FragCoord.xy / px);
 
-          float grain = random3(vec3(coord, floor(u_time * 5.0)));
+          float grain = random3(vec3(coord, floor(u_time * 20.0)));
 
           float scanline = 0.95 + 0.05 * step(0.5, fract(gl_FragCoord.y * 0.5));
 
@@ -145,7 +170,7 @@
 
           float tint = random(vec2(coord.y * 0.3, floor(u_time * 3.0)));
           if (tint > 0.995) {
-            float boost = 0.15;
+            float boost = 0.5;
             r += random(vec2(coord.x + u_time * 1.3, coord.y)) * boost;
             g += random(vec2(coord.x + u_time * 2.7, coord.y + 1.0)) * boost;
             b += random(vec2(coord.x + u_time * 4.1, coord.y + 2.0)) * boost;
@@ -156,20 +181,23 @@
             float cr = random3(vec3(coord + 100.0, floor(u_time * 20.0)));
             float cg = random3(vec3(coord + 200.0, floor(u_time * 20.0)));
             float cb = random3(vec3(coord + 300.0, floor(u_time * 20.0)));
-            r = cr * 0.6;
-            g = cg * 0.6;
-            b = cb * 0.6;
+            r = cr * 0.7;
+            g = cg * 0.7;
+            b = cb * 0.7;
           }
 
-          float shimmer = random3(vec3(coord + 500.0, floor(u_time * 20.0)));
-          if (shimmer > 0.9995) {
-            float brightness = 0.9 + random(vec2(coord)) * 0.1;
-            r = brightness;
-            g = brightness;
-            b = brightness;
-          }
+          float pc1 = noise(coord * 0.8 + u_time * 0.5);
+          float pc2 = noise(coord * 0.8 + u_time * 0.5 + 100.0);
+          float pc3 = noise(coord * 0.8 + u_time * 0.5 + 200.0);
+          vec3 color = vec3(r, g, b) * scanline + vec3(pc1, pc2, pc3) * 0.3;
 
-          vec3 color = vec3(r, g, b) * scanline;
+          vec2 warp = vec2(
+            noise(coord * 0.03 + u_time * 0.12),
+            noise(coord * 0.03 + u_time * 0.12 + 50.0)
+          );
+          float mask = fbm(coord * 0.02 + warp * 2.0);
+          mask = smoothstep(0.35, 0.75, mask);
+          color *= mask;
 
           gl_FragColor = vec4(color, 1.0);
         }
