@@ -9,68 +9,209 @@
         background-color: #000;
         color: #fff;
         font-family: "Helvetica", sans-serif;
-        margin: 30px;
+        margin: 0;
         position: relative;
         overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
       }
-      body::before {
-        content: "";
+      #static-bg {
         position: fixed;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><filter id="noise" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)"/></svg>');
-        opacity: 0.1;
-        pointer-events: none;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         z-index: -1;
-        animation: noise 2s steps(5) infinite;
+        opacity: 0.12;
       }
-      @keyframes noise {
-        to { transform: translate3d(5%, -10%, 0); }
+      .card-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .profile-img {
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+        z-index: 1;
+      }
+      .card {
+        background: #111;
+        border: 1px solid #222;
+        border-radius: 16px;
+        padding: 40px 50px;
+        text-align: center;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.03);
+        min-width: 320px;
+      }
+      .card h1 {
+        margin: 0 0 8px 0;
+        font-size: 1.6rem;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+      .card p {
+        margin: 0 0 24px 0;
+        color: #aaa;
+        line-height: 1.6;
+        font-size: 0.95rem;
       }
       .links {
         display: flex;
-        gap: 20px;
+        justify-content: center;
+        gap: 12px;
       }
       .links a {
         color: #fff;
         text-decoration: none;
-        padding: 8px 16px;
+        padding: 8px 20px;
         border: 1px solid #333;
-        border-radius: 4px;
+        border-radius: 8px;
         transition: all 0.2s ease;
+        font-size: 0.9rem;
       }
       .links a:hover {
-        border-color: #666;
-        background-color: #111;
+        border-color: #555;
+        background-color: #1a1a1a;
       }
       .calda {
         color: #ff3d00;
         font-weight: bold;
         text-decoration: none;
       }
-      .calvin {
-        position: fixed;
-        bottom: 0px;
-        right: 0px;
-        max-width: 100%;
-        height: 1080px;
-        opacity: 0.8;
-        z-index: 10;
-      }
     </style>
   </head>
   <body>
-    <h1>Tim Rekelj</h1>
-    <p>
-      I'm a 24 year old developer from Slovenia currently working at
-      <a class="calda" href="https://www.thecalda.com/">The Calda</a>.
-    </p>
-    <div class="links">
-      <a href="https://github.com/timrekelj" target="_blank">GitHub</a>
-      <a href="https://www.linkedin.com/in/tim-rekelj-28b2a9232" target="_blank">LinkedIn</a>
+    <canvas id="static-bg"></canvas>
+    <div class="card-wrapper">
+      <img src="profile.png" class="profile-img" alt="Tim Rekelj" />
+      <div class="card">
+        <h1>Tim Rekelj</h1>
+        <p>
+          I'm a 24 year old developer from Slovenia currently working at
+          <a class="calda" href="https://www.thecalda.com/">The Calda</a>.
+        </p>
+        <div class="links">
+          <a href="https://github.com/timrekelj" target="_blank">GitHub</a>
+          <a href="https://www.linkedin.com/in/tim-rekelj-28b2a9232" target="_blank">LinkedIn</a>
+        </div>
+      </div>
     </div>
-    <img src="calvin.png" class="calvin" alt="Calvin" />
+    <script>
+      const canvas = document.getElementById("static-bg");
+      const gl = canvas.getContext("webgl", { alpha: false, antialias: false });
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        gl.viewport(0, 0, canvas.width, canvas.height);
+      }
+      window.addEventListener("resize", resize);
+      resize();
+
+      const vsSource = `
+        attribute vec2 a_position;
+        void main() {
+          gl_Position = vec4(a_position, 0.0, 1.0);
+        }
+      `;
+
+      const fsSource = `
+        precision mediump float;
+        uniform float u_time;
+        uniform vec2 u_resolution;
+
+        float random(vec2 st) {
+          return fract(sin(dot(st, vec2(12.9898, 78.233))) * 43758.5453);
+        }
+
+        float random3(vec3 p) {
+          return fract(sin(dot(p, vec3(12.9898, 78.233, 45.164))) * 43758.5453);
+        }
+
+        void main() {
+          float px = 8.0;
+          vec2 coord = floor(gl_FragCoord.xy / px);
+
+          float grain = random3(vec3(coord, floor(u_time * 5.0)));
+
+          float scanline = 0.95 + 0.05 * step(0.5, fract(gl_FragCoord.y * 0.5));
+
+          float r = grain;
+          float g = grain;
+          float b = grain;
+
+          float tint = random(vec2(coord.y * 0.3, floor(u_time * 3.0)));
+          if (tint > 0.995) {
+            float boost = 0.15;
+            r += random(vec2(coord.x + u_time * 1.3, coord.y)) * boost;
+            g += random(vec2(coord.x + u_time * 2.7, coord.y + 1.0)) * boost;
+            b += random(vec2(coord.x + u_time * 4.1, coord.y + 2.0)) * boost;
+          }
+
+          float col = random3(vec3(coord, floor(u_time * 20.0)));
+          if (col > 0.997) {
+            float cr = random3(vec3(coord + 100.0, floor(u_time * 20.0)));
+            float cg = random3(vec3(coord + 200.0, floor(u_time * 20.0)));
+            float cb = random3(vec3(coord + 300.0, floor(u_time * 20.0)));
+            r = cr * 0.6;
+            g = cg * 0.6;
+            b = cb * 0.6;
+          }
+
+          float shimmer = random3(vec3(coord + 500.0, floor(u_time * 20.0)));
+          if (shimmer > 0.9995) {
+            float brightness = 0.9 + random(vec2(coord)) * 0.1;
+            r = brightness;
+            g = brightness;
+            b = brightness;
+          }
+
+          vec3 color = vec3(r, g, b) * scanline;
+
+          gl_FragColor = vec4(color, 1.0);
+        }
+      `;
+
+      function compileShader(source, type) {
+        const shader = gl.createShader(type);
+        gl.shaderSource(shader, source);
+        gl.compileShader(shader);
+        return shader;
+      }
+
+      const vs = compileShader(vsSource, gl.VERTEX_SHADER);
+      const fs = compileShader(fsSource, gl.FRAGMENT_SHADER);
+
+      const program = gl.createProgram();
+      gl.attachShader(program, vs);
+      gl.attachShader(program, fs);
+      gl.linkProgram(program);
+      gl.useProgram(program);
+
+      const posBuffer = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, posBuffer);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+        -1, -1, 1, -1, -1, 1,
+        -1, 1, 1, -1, 1, 1
+      ]), gl.STATIC_DRAW);
+
+      const aPos = gl.getAttribLocation(program, "a_position");
+      gl.enableVertexAttribArray(aPos);
+      gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+
+      const uTime = gl.getUniformLocation(program, "u_time");
+      const uResolution = gl.getUniformLocation(program, "u_resolution");
+
+      function render(time) {
+        gl.uniform1f(uTime, time * 0.001);
+        gl.uniform2f(uResolution, canvas.width, canvas.height);
+        gl.drawArrays(gl.TRIANGLES, 0, 6);
+        requestAnimationFrame(render);
+      }
+      requestAnimationFrame(render);
+    </script>
   </body>
 </html>
