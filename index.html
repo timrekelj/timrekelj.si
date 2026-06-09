@@ -5,10 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tim Rekelj</title>
     <style>
+      @font-face {
+        font-family: 'Outfit';
+        src: url('Outfit.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'Boiling';
+        src: url('Boiling.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+      }
       body {
         background-color: #000;
         color: #fff;
-        font-family: "Helvetica", sans-serif;
+        font-family: "Outfit", sans-serif;
         margin: 0;
         position: relative;
         overflow: hidden;
@@ -30,6 +42,22 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 100%;
+      }
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        width: 80%;
+        z-index: 2;
+      }
+      .title {
+        font-family: 'Boiling', serif;
+        margin: 0;
+        font-size: 5rem;
+        font-weight: 400;
+        letter-spacing: -0.01em;
+        line-height: .85em;
       }
       .profile-img {
         width: 300px;
@@ -38,42 +66,57 @@
         z-index: 1;
       }
       .card {
-        background: #111;
+        background: rgba(100, 100, 100, 0.2);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
         border-radius: 16px;
-        padding: 40px 50px;
-        text-align: center;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.03);
-        min-width: 320px;
-      }
-      .card h1 {
-        margin: 0 0 8px 0;
-        font-size: 1.6rem;
-        font-weight: 600;
-        letter-spacing: -0.02em;
+        padding: 30px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        width: 80%;
       }
       .card p {
         margin: 0 0 24px 0;
-        color: #aaa;
+        color: rgba(255, 255, 255, 0.8);
         line-height: 1.6;
         font-size: 0.95rem;
       }
       .links {
         display: flex;
-        justify-content: center;
+        flex-direction: row;
         gap: 12px;
+      }
+      @property --github-angle {
+        syntax: "<angle>";
+        initial-value: 135deg;
+        inherits: false;
+      }
+      @property --linkedin-angle {
+        syntax: "<angle>";
+        initial-value: 135deg;
+        inherits: false;
       }
       .links a {
         color: #fff;
+        font-weight: bold;
         text-decoration: none;
         padding: 8px 20px;
-        border: 1px solid #333;
-        border-radius: 8px;
-        transition: all 0.2s ease;
+        border-radius: 100px;
+        transition: --github-angle 0.4s ease, --linkedin-angle 0.4s ease;
         font-size: 0.9rem;
       }
-      .links a:hover {
-        border-color: #555;
-        background-color: #1a1a1a;
+      .links a[href*="github"] {
+        background: linear-gradient(var(--github-angle), #ED7D3A, #758ECD);
+        border: none;
+      }
+      .links a[href*="github"]:hover {
+        --github-angle: 315deg;
+      }
+      .links a[href*="linkedin"] {
+        background: linear-gradient(var(--linkedin-angle), #FF5964, #2FBF71);
+        border: none;
+      }
+      .links a[href*="linkedin"]:hover {
+        --linkedin-angle: 315deg;
       }
       .calda {
         color: #ff3d00;
@@ -83,20 +126,17 @@
         transition: text-shadow 0.3s ease;
         text-shadow: 0 0 15px rgba(255, 61, 0, 0.8), 0 0 30px rgba(255, 61, 0, 0.4);
       }
-      .calda:hover {
-      }
     </style>
   </head>
   <body>
     <canvas id="static-bg"></canvas>
     <div class="card-wrapper">
-      <img src="profile.png" class="profile-img" alt="Tim Rekelj" />
+      <div class="header">
+        <h1 class="title">Tim Rekelj</h1>
+        <img src="profile.png" class="profile-img" alt="Tim Rekelj" />
+      </div>
       <div class="card">
-        <h1>Tim Rekelj</h1>
-        <p>
-          I'm a 24 year old developer from Slovenia currently working at
-          <a class="calda" href="https://www.thecalda.com/">The Calda</a>.
-        </p>
+        <p>24 year old full stack developer from Slovenia currently working at <a class="calda" href="https://www.thecalda.com/">The Calda</a>.</p>
         <div class="links">
           <a href="https://github.com/timrekelj" target="_blank">GitHub</a>
           <a href="https://www.linkedin.com/in/tim-rekelj-28b2a9232" target="_blank">LinkedIn</a>
@@ -160,36 +200,11 @@
           float px = 6.0;
           vec2 coord = floor(gl_FragCoord.xy / px);
 
-          float grain = random3(vec3(coord, floor(u_time * 20.0)));
+          float r = random3(vec3(coord + 0.1, floor(u_time * 20.0)));
+          float g = random3(vec3(coord + 100.1, floor(u_time * 20.0)));
+          float b = random3(vec3(coord + 200.1, floor(u_time * 20.0)));
 
-          float scanline = 0.95 + 0.05 * step(0.5, fract(gl_FragCoord.y * 0.5));
-
-          float r = grain;
-          float g = grain;
-          float b = grain;
-
-          float tint = random(vec2(coord.y * 0.3, floor(u_time * 3.0)));
-          if (tint > 0.995) {
-            float boost = 0.5;
-            r += random(vec2(coord.x + u_time * 1.3, coord.y)) * boost;
-            g += random(vec2(coord.x + u_time * 2.7, coord.y + 1.0)) * boost;
-            b += random(vec2(coord.x + u_time * 4.1, coord.y + 2.0)) * boost;
-          }
-
-          float col = random3(vec3(coord, floor(u_time * 20.0)));
-          if (col > 0.997) {
-            float cr = random3(vec3(coord + 100.0, floor(u_time * 20.0)));
-            float cg = random3(vec3(coord + 200.0, floor(u_time * 20.0)));
-            float cb = random3(vec3(coord + 300.0, floor(u_time * 20.0)));
-            r = cr * 0.7;
-            g = cg * 0.7;
-            b = cb * 0.7;
-          }
-
-          float pc1 = noise(coord * 0.8 + u_time * 0.5);
-          float pc2 = noise(coord * 0.8 + u_time * 0.5 + 100.0);
-          float pc3 = noise(coord * 0.8 + u_time * 0.5 + 200.0);
-          vec3 color = vec3(r, g, b) * scanline + vec3(pc1, pc2, pc3) * 0.3;
+          vec3 color = vec3(r, g, b);
 
           vec2 warp = vec2(
             noise(coord * 0.03 + u_time * 0.12),
