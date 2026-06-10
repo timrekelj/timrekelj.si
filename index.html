@@ -27,10 +27,12 @@
         color: #000;
         font-family: 'PlayfairDisplay', serif;
         line-height: 1.6;
-        padding: 20px;
+        padding: 24px 0;
       }
       .content {
         max-width: 700px;
+        margin: 0 auto;
+        padding: 0 40px;
       }
       h1 {
         font-size: 4rem;
@@ -58,6 +60,15 @@
         color: #000;
         text-decoration: underline;
       }
+      .calda {
+        color: #ff3d00;
+        text-decoration: none;
+        font-weight: bold;
+        transition: text-shadow 0.3s ease;
+      }
+      .calda:hover {
+        text-shadow: 0 0 10px rgba(255, 61, 0, 0.4), 0 0 20px rgba(255, 61, 0, 0.2);
+      }
       .profile-img {
         position: fixed;
         bottom: 0;
@@ -67,7 +78,7 @@
       }
       @media (max-width: 768px) {
         body {
-          padding: 40px 24px 250px 24px;
+          padding-bottom: 250px;
         }
         .profile-img {
           display: block;
@@ -75,12 +86,21 @@
           margin: 0 auto;
         }
       }
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #000;
+          color: #fff;
+        }
+        ul li a {
+          color: #fff;
+        }
+      }
     </style>
   </head>
   <body>
     <div class="content">
       <h1>Tim Rekelj</h1>
-      <p>24 year old full stack developer from Slovenia currently working at <a href="https://www.thecalda.com/">The Calda</a>.</p>
+      <p>24 year old full stack developer from Slovenia currently working at <a class="calda" href="https://www.thecalda.com/">The Calda</a>.</p>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
