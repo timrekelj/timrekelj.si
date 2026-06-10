@@ -6,255 +6,94 @@
     <title>Tim Rekelj</title>
     <style>
       @font-face {
-        font-family: 'Outfit';
-        src: url('Outfit.ttf') format('truetype');
+        font-family: 'PlayfairDisplay';
+        src: url('PlayfairDisplay.ttf') format('truetype');
         font-weight: normal;
         font-style: normal;
       }
       @font-face {
-        font-family: 'Boiling';
-        src: url('Boiling.ttf') format('truetype');
+        font-family: 'PlayfairDisplay';
+        src: url('PlayfairDisplay-Italic.ttf') format('truetype');
         font-weight: normal;
-        font-style: normal;
+        font-style: italic;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
       body {
-        background-color: #000;
-        color: #fff;
-        font-family: "Outfit", sans-serif;
-        margin: 0;
-        position: relative;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
+        background-color: #fff;
+        color: #000;
+        font-family: 'PlayfairDisplay', serif;
+        line-height: 1.6;
+        padding: 20px;
       }
-      #static-bg {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        opacity: 0.2;
+      .content {
+        max-width: 700px;
       }
-      .card-wrapper {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
+      h1 {
+        font-size: 4rem;
+        margin-bottom: 24px;
+        font-weight: 900;
       }
-      .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: end;
-        width: 80%;
-        z-index: 2;
+      h2 {
+        margin-bottom: 8px;
+        font-weight: bold;
+        font-style: italic;
       }
-      .title {
-        font-family: 'Boiling', serif;
-        margin: 0;
-        font-size: 5rem;
-        font-weight: 400;
-        letter-spacing: -0.01em;
-        line-height: .85em;
+      p {
+        font-size: 1.1rem;
+        margin-bottom: 16px;
+      }
+      ul {
+        list-style: disc;
+        padding-left: 24px;
+      }
+      ul li {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+      }
+      ul li a {
+        color: #000;
+        text-decoration: underline;
       }
       .profile-img {
-        width: 300px;
-        height: 300px;
-        object-fit: cover;
-        z-index: 1;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 450px;
+        object-fit: contain;
       }
-      .card {
-        background: rgba(100, 100, 100, 0.2);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border-radius: 16px;
-        padding: 30px;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        width: 80%;
-      }
-      .card p {
-        margin: 0 0 24px 0;
-        color: rgba(255, 255, 255, 0.8);
-        line-height: 1.6;
-        font-size: 0.95rem;
-      }
-      .links {
-        display: flex;
-        flex-direction: row;
-        gap: 12px;
-      }
-      @property --github-angle {
-        syntax: "<angle>";
-        initial-value: 135deg;
-        inherits: false;
-      }
-      @property --linkedin-angle {
-        syntax: "<angle>";
-        initial-value: 135deg;
-        inherits: false;
-      }
-      .links a {
-        color: #fff;
-        font-weight: bold;
-        text-decoration: none;
-        padding: 8px 20px;
-        border-radius: 100px;
-        transition: --github-angle 0.4s ease, --linkedin-angle 0.4s ease;
-        font-size: 0.9rem;
-      }
-      .links a[href*="github"] {
-        background: linear-gradient(var(--github-angle), #ED7D3A, #758ECD);
-        border: none;
-      }
-      .links a[href*="github"]:hover {
-        --github-angle: 315deg;
-      }
-      .links a[href*="linkedin"] {
-        background: linear-gradient(var(--linkedin-angle), #FF5964, #2FBF71);
-        border: none;
-      }
-      .links a[href*="linkedin"]:hover {
-        --linkedin-angle: 315deg;
-      }
-      .calda {
-        color: #ff3d00;
-        font-weight: bold;
-        text-decoration: none;
-        position: relative;
-        transition: text-shadow 0.3s ease;
-        text-shadow: 0 0 15px rgba(255, 61, 0, 0.8), 0 0 30px rgba(255, 61, 0, 0.4);
+      @media (max-width: 768px) {
+        body {
+          padding: 40px 24px 250px 24px;
+        }
+        .profile-img {
+          display: block;
+          width: 70%;
+          margin: 0 auto;
+        }
       }
     </style>
   </head>
   <body>
-    <canvas id="static-bg"></canvas>
-    <div class="card-wrapper">
-      <div class="header">
-        <h1 class="title">Tim Rekelj</h1>
-        <img src="profile.png" class="profile-img" alt="Tim Rekelj" />
-      </div>
-      <div class="card">
-        <p>24 year old full stack developer from Slovenia currently working at <a class="calda" href="https://www.thecalda.com/">The Calda</a>.</p>
-        <div class="links">
-          <a href="https://github.com/timrekelj" target="_blank">GitHub</a>
-          <a href="https://www.linkedin.com/in/tim-rekelj-28b2a9232" target="_blank">LinkedIn</a>
-        </div>
-      </div>
+    <div class="content">
+      <h1>Tim Rekelj</h1>
+      <p>24 year old full stack developer from Slovenia currently working at <a href="https://www.thecalda.com/">The Calda</a>.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+      <h2>Friends from internet</h2>
+      <ul>
+        <li><a href="#">Friend Name One</a></li>
+        <li><a href="#">Friend Name Two</a></li>
+        <li><a href="#">Friend Name Three</a></li>
+      </ul>
     </div>
-    <script>
-      const canvas = document.getElementById("static-bg");
-      const gl = canvas.getContext("webgl", { alpha: false, antialias: false });
-
-      function resize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        gl.viewport(0, 0, canvas.width, canvas.height);
-      }
-      window.addEventListener("resize", resize);
-      resize();
-
-      const vsSource = `
-        attribute vec2 a_position;
-        void main() {
-          gl_Position = vec4(a_position, 0.0, 1.0);
-        }
-      `;
-
-      const fsSource = `
-        precision mediump float;
-        uniform float u_time;
-        uniform vec2 u_resolution;
-
-        float random(vec2 st) {
-          return fract(sin(dot(st, vec2(12.9898, 78.233))) * 43758.5453);
-        }
-
-        float random3(vec3 p) {
-          return fract(sin(dot(p, vec3(12.9898, 78.233, 45.164))) * 43758.5453);
-        }
-
-        float noise(vec2 p) {
-          vec2 i = floor(p);
-          vec2 f = fract(p);
-          vec2 u = f * f * (3.0 - 2.0 * f);
-          float a = random(i);
-          float b = random(i + vec2(1.0, 0.0));
-          float c = random(i + vec2(0.0, 1.0));
-          float d = random(i + vec2(1.0, 1.0));
-          return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
-        }
-
-        float fbm(vec2 p) {
-          float v = 0.0, a = 0.5;
-          for (int i = 0; i < 5; i++) {
-            v += a * noise(p);
-            p *= 2.0;
-            a *= 0.5;
-          }
-          return v;
-        }
-
-        void main() {
-          float px = 6.0;
-          vec2 coord = floor(gl_FragCoord.xy / px);
-
-          float r = random3(vec3(coord + 0.1, floor(u_time * 20.0)));
-          float g = random3(vec3(coord + 100.1, floor(u_time * 20.0)));
-          float b = random3(vec3(coord + 200.1, floor(u_time * 20.0)));
-
-          vec3 color = vec3(r, g, b);
-
-          vec2 warp = vec2(
-            noise(coord * 0.03 + u_time * 0.12),
-            noise(coord * 0.03 + u_time * 0.12 + 50.0)
-          );
-          float mask = fbm(coord * 0.02 + warp * 2.0);
-          mask = smoothstep(0.35, 0.75, mask);
-          color *= mask;
-
-          gl_FragColor = vec4(color, 1.0);
-        }
-      `;
-
-      function compileShader(source, type) {
-        const shader = gl.createShader(type);
-        gl.shaderSource(shader, source);
-        gl.compileShader(shader);
-        return shader;
-      }
-
-      const vs = compileShader(vsSource, gl.VERTEX_SHADER);
-      const fs = compileShader(fsSource, gl.FRAGMENT_SHADER);
-
-      const program = gl.createProgram();
-      gl.attachShader(program, vs);
-      gl.attachShader(program, fs);
-      gl.linkProgram(program);
-      gl.useProgram(program);
-
-      const posBuffer = gl.createBuffer();
-      gl.bindBuffer(gl.ARRAY_BUFFER, posBuffer);
-      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
-        -1, -1, 1, -1, -1, 1,
-        -1, 1, 1, -1, 1, 1
-      ]), gl.STATIC_DRAW);
-
-      const aPos = gl.getAttribLocation(program, "a_position");
-      gl.enableVertexAttribArray(aPos);
-      gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
-
-      const uTime = gl.getUniformLocation(program, "u_time");
-      const uResolution = gl.getUniformLocation(program, "u_resolution");
-
-      function render(time) {
-        gl.uniform1f(uTime, time * 0.001);
-        gl.uniform2f(uResolution, canvas.width, canvas.height);
-        gl.drawArrays(gl.TRIANGLES, 0, 6);
-        requestAnimationFrame(render);
-      }
-      requestAnimationFrame(render);
-    </script>
+    <img src="profile.png" class="profile-img" alt="Tim Rekelj" />
   </body>
 </html>
