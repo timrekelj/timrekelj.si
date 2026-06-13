@@ -34,6 +34,28 @@
         margin: 0 auto;
         padding: 0 40px;
       }
+      .site-header {
+        max-width: 700px;
+        margin: 0 auto 24px;
+        padding: 0 40px;
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+      }
+      .site-title {
+        font-size: 4rem;
+        font-weight: 900;
+        color: inherit;
+        text-decoration: none;
+      }
+      .theme-toggle {
+        background: none;
+        border: 0;
+        color: inherit;
+        font-family: 'PlayfairDisplay', serif;
+        font-size: 0.9rem;
+        cursor: pointer;
+      }
       h1 {
         font-size: 4rem;
         margin-bottom: 24px;
@@ -73,7 +95,7 @@
         position: fixed;
         bottom: 0;
         right: 0;
-        width: 450px;
+        width: 500px;
         object-fit: contain;
       }
       @media (max-width: 768px) {
@@ -81,9 +103,8 @@
           padding-bottom: 250px;
         }
         .profile-img {
-          display: block;
-          width: 70%;
-          margin: 0 auto;
+          right: 0;
+          height: 400px;
         }
       }
       @media (prefers-color-scheme: dark) {
@@ -95,11 +116,28 @@
           color: #fff;
         }
       }
+      [data-theme="light"] body {
+        background-color: #fff;
+        color: #000;
+      }
+      [data-theme="light"] ul li a {
+        color: #000;
+      }
+      [data-theme="dark"] body {
+        background-color: #000;
+        color: #fff;
+      }
+      [data-theme="dark"] ul li a {
+        color: #fff;
+      }
     </style>
   </head>
   <body>
+    <header class="site-header">
+      <a href="/" class="site-title">Tim Rekelj</a>
+      <button class="theme-toggle" id="theme-toggle">dark</button>
+    </header>
     <div class="content">
-      <h1>Tim Rekelj</h1>
       <p>24 year old full stack developer from Slovenia currently working at <a class="calda" href="https://www.thecalda.com/">The Calda</a>.</p>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -115,5 +153,27 @@
       </ul>
     </div>
     <img src="profile.png" class="profile-img" alt="Tim Rekelj" />
+    <script>
+      const themeToggle = document.getElementById('theme-toggle');
+      const html = document.documentElement;
+
+      function setTheme(theme) {
+        html.setAttribute('data-theme', theme);
+        themeToggle.textContent = theme === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('theme', theme);
+      }
+
+      const saved = localStorage.getItem('theme');
+      if (saved) {
+        setTheme(saved);
+      } else {
+        setTheme(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      }
+
+      themeToggle.addEventListener('click', () => {
+        const current = html.getAttribute('data-theme');
+        setTheme(current === 'dark' ? 'light' : 'dark');
+      });
+    </script>
   </body>
 </html>
