@@ -162,24 +162,42 @@
         font-weight: bold;
         font-size: 0.9rem;
       }
-      main {
-        -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 80px, #000 calc(100% - 80px), transparent 100%);
-                mask-image: linear-gradient(to bottom, transparent 0, #000 80px, #000 calc(100% - 80px), transparent 100%);
-      }
       .profile-img {
         position: fixed;
         bottom: 0;
         right: 0;
         width: 500px;
         object-fit: contain;
+        z-index: 2;
+      }
+      body::before,
+      body::after {
+        content: "";
+        position: fixed;
+        left: 0;
+        right: 0;
+        height: 40px;
+        pointer-events: none;
+        z-index: 1;
+      }
+      body::before {
+        top: 0;
+        background: linear-gradient(to bottom, #fff, transparent);
+      }
+      body::after {
+        bottom: 0;
+        background: linear-gradient(to top, #fff, transparent);
       }
       @media (max-width: 768px) {
         body {
           padding-bottom: 200px;
         }
-        main {
-          -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 50px, #000 calc(100% - 50px), transparent 100%);
-                  mask-image: linear-gradient(to bottom, transparent 0, #000 50px, #000 calc(100% - 50px), transparent 100%);
+        .site-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .social-links {
+          margin-top: 12px;
         }
         .profile-img {
           width: 280px;
@@ -190,6 +208,12 @@
           background-color: #000;
           color: #fff;
         }
+        body::before {
+          background: linear-gradient(to bottom, #000, transparent);
+        }
+        body::after {
+          background: linear-gradient(to top, #000, transparent);
+        }
         .github {
           color: #f0f6fc;
         }
@@ -198,9 +222,21 @@
         background-color: #fff;
         color: #000;
       }
+      [data-theme="light"] body::before {
+        background: linear-gradient(to bottom, #fff, transparent);
+      }
+      [data-theme="light"] body::after {
+        background: linear-gradient(to top, #fff, transparent);
+      }
       [data-theme="dark"] body {
         background-color: #000;
         color: #fff;
+      }
+      [data-theme="dark"] body::before {
+        background: linear-gradient(to bottom, #000, transparent);
+      }
+      [data-theme="dark"] body::after {
+        background: linear-gradient(to top, #000, transparent);
       }
       [data-theme="dark"] .github {
         color: #f0f6fc;
