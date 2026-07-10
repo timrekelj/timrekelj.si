@@ -168,25 +168,6 @@
         right: 0;
         width: 500px;
         object-fit: contain;
-        z-index: 2;
-      }
-      body::before,
-      body::after {
-        content: "";
-        position: fixed;
-        left: 0;
-        right: 0;
-        height: 40px;
-        pointer-events: none;
-        z-index: 1;
-      }
-      body::before {
-        top: 0;
-        background: linear-gradient(to bottom, #fff, transparent);
-      }
-      body::after {
-        bottom: 0;
-        background: linear-gradient(to top, #fff, transparent);
       }
       @media (max-width: 768px) {
         body {
@@ -208,12 +189,6 @@
           background-color: #000;
           color: #fff;
         }
-        body::before {
-          background: linear-gradient(to bottom, #000, transparent);
-        }
-        body::after {
-          background: linear-gradient(to top, #000, transparent);
-        }
         .github {
           color: #f0f6fc;
         }
@@ -222,21 +197,9 @@
         background-color: #fff;
         color: #000;
       }
-      [data-theme="light"] body::before {
-        background: linear-gradient(to bottom, #fff, transparent);
-      }
-      [data-theme="light"] body::after {
-        background: linear-gradient(to top, #fff, transparent);
-      }
       [data-theme="dark"] body {
         background-color: #000;
         color: #fff;
-      }
-      [data-theme="dark"] body::before {
-        background: linear-gradient(to bottom, #000, transparent);
-      }
-      [data-theme="dark"] body::after {
-        background: linear-gradient(to top, #000, transparent);
       }
       [data-theme="dark"] .github {
         color: #f0f6fc;
@@ -276,14 +239,11 @@
         This approach has definitely made things more complicated, but it has also made them more meaningful. I could choose whatever is fastest and easiest, but I like paying attention to the details. Maybe intentional living makes everything a little harder, but it also makes me enjoy everything a lot more.
       </p>
 
-      <!--
       <h2>Friends from internet</h2>
       <ul>
-        <li><a href="#">Friend Name One</a></li>
-        <li><a href="#">Friend Name Two</a></li>
-        <li><a href="#">Friend Name Three</a></li>
+        <li><a href="https://aiken.si/">Aiken Tine Ahač</a></li>
+        <li><a href="https://zankrizaj.si/">Žan Križaj</a></li>
       </ul>
-      -->
       </div>
     </main>
     <img src="profile.png" class="profile-img" alt="Tim Rekelj" />
