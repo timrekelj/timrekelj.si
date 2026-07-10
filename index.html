@@ -41,6 +41,7 @@
       .site-title {
         font-size: 4rem;
         font-weight: 900;
+        line-height: 1.1;
         color: inherit;
         text-decoration: none;
       }
@@ -144,6 +145,23 @@
       .razorpeak:hover {
         text-shadow: 0 0 10px rgba(245, 158, 11, 0.4), 0 0 20px rgba(245, 158, 11, 0.2);
       }
+      .social-links {
+        display: flex;
+        align-items: baseline;
+        gap: 16px;
+      }
+      .github {
+        color: #24292f;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 0.9rem;
+      }
+      .linkedin {
+        color: #0a66c2;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 0.9rem;
+      }
       .profile-img {
         position: fixed;
         bottom: 0;
@@ -164,6 +182,9 @@
           background-color: #000;
           color: #fff;
         }
+        .github {
+          color: #f0f6fc;
+        }
       }
       [data-theme="light"] body {
         background-color: #fff;
@@ -173,13 +194,20 @@
         background-color: #000;
         color: #fff;
       }
+      [data-theme="dark"] .github {
+        color: #f0f6fc;
+      }
     </style>
   </head>
   <body>
     <header class="site-header">
       <!-- <a href="/" class="site-title">Tim Rekelj</a> -->
       <div class="site-title">Tim Rekelj</div>
-      <button class="theme-toggle" id="theme-toggle">dark</button>
+      <div class="social-links">
+        <a class="github" href="https://github.com/timrekelj" target="_blank">GitHub</a>
+        <a class="linkedin" href="https://www.linkedin.com/in/tim-rekelj/" target="_blank">LinkedIn</a>
+        <button class="theme-toggle" id="theme-toggle">dark</button>
+      </div>
     </header>
     <div class="content">
       <p>24 year old full stack developer from Slovenia currently working at <a class="calda" href="https://www.thecalda.com/">The Calda</a>.</p>
