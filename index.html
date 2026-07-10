@@ -162,6 +162,10 @@
         font-weight: bold;
         font-size: 0.9rem;
       }
+      main {
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 80px, #000 calc(100% - 80px), transparent 100%);
+                mask-image: linear-gradient(to bottom, transparent 0, #000 80px, #000 calc(100% - 80px), transparent 100%);
+      }
       .profile-img {
         position: fixed;
         bottom: 0;
@@ -172,6 +176,10 @@
       @media (max-width: 768px) {
         body {
           padding-bottom: 200px;
+        }
+        main {
+          -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 50px, #000 calc(100% - 50px), transparent 100%);
+                  mask-image: linear-gradient(to bottom, transparent 0, #000 50px, #000 calc(100% - 50px), transparent 100%);
         }
         .profile-img {
           width: 280px;
@@ -200,7 +208,8 @@
     </style>
   </head>
   <body>
-    <header class="site-header">
+    <main>
+      <header class="site-header">
       <!-- <a href="/" class="site-title">Tim Rekelj</a> -->
       <div class="site-title">Tim Rekelj</div>
       <div class="social-links">
@@ -239,7 +248,8 @@
         <li><a href="#">Friend Name Three</a></li>
       </ul>
       -->
-    </div>
+      </div>
+    </main>
     <img src="profile.png" class="profile-img" alt="Tim Rekelj" />
     <script>
       const themeToggle = document.getElementById('theme-toggle');
