@@ -58,6 +58,9 @@
         font-weight: bold;
         font-style: italic;
       }
+      h3 {
+        margin-bottom: 4px;
+      }
       p {
         font-size: 1.1rem;
         margin-bottom: 16px;
@@ -160,13 +163,19 @@
         gap: 16px;
       }
       .github {
-        color: #24292f;
+        color: #8250df;
         text-decoration: none;
         font-weight: bold;
         font-size: 0.9rem;
       }
       .linkedin {
         color: #0a66c2;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 0.9rem;
+      }
+      .email {
+        color: #0f766e;
         text-decoration: none;
         font-weight: bold;
         font-size: 0.9rem;
@@ -180,7 +189,7 @@
       }
       @media (max-width: 768px) {
         body {
-          padding-bottom: 200px;
+          padding-bottom: 0;
         }
         .site-header {
           flex-direction: column;
@@ -190,7 +199,10 @@
           margin-top: 12px;
         }
         .profile-img {
+          position: static;
+          display: block;
           width: 200px;
+          margin-left: auto;
         }
       }
       @media (prefers-color-scheme: dark) {
@@ -223,12 +235,25 @@
       <div class="social-links">
         <a class="github" href="https://github.com/timrekelj" target="_blank">GitHub</a>
         <a class="linkedin" href="https://www.linkedin.com/in/tim-rekelj/" target="_blank">LinkedIn</a>
+        <a class="email" href="mailto:work@timrekelj.si">Email</a>
         <button class="theme-toggle" id="theme-toggle">dark</button>
       </div>
     </header>
     <div class="content">
       <p>24 year old full stack developer from Slovenia currently working at <a class="calda" href="https://www.thecalda.com/">The Calda</a>.</p>
       <p>In this company I have been able to work on multiple projects from start to finish, spanning from simple startup ideas to large enterprise solutions. Some projects I did alone, both frontend and backend and others we worked in a larger teams. Some of the projects I was able to work on are <a class="pitchsafe" href="https://www.pitchsafe.co/">The Pitchsafe</a>, <a class="superdex" href="https://www.thesuperdex.com/">The Superdex</a>, <a class="natureme" href="https://www.natureme.app/">NatureMe</a>, <a class="ratecards" href="https://www.ratecards.app/">RateCards</a> and many more. Before Calda, I have worked in a larger company <a class="xlab" href="https://xlab.si/sl/">XLAB</a> for 3 years and in <a class="razorpeak" href="https://www.razorpeak.io/">Razorpeak</a>, a small startup building a crypto arbitrage trading bot. Me and a couple of my friends have also tried our luck with a startup on our own called <a class="prskalnik" href="https://prskalnik.eu/en">Prskalnik</a> which is still living. Currently I am also working on a startup of my own with two friends called <a class="avarra" href="https://avarra.dev/">Avarra</a>.</p>
+
+      <h2>Selected work</h2>
+      <h3><a class="pitchsafe" href="https://www.pitchsafe.co/">PitchSafe</a></h3>
+      <p>
+        An athlete development platform for pitchers, coaches, and performance professionals. I worked mostly on the backend, architecture, and authentication, while also helping with frontend development as part of the Calda team.
+      </p>
+      <h3><a class="superdex" href="https://www.thesuperdex.com/">Superdex</a></h3>
+      <p>
+        A social platform where car enthusiasts can capture, identify, collect, and share interesting vehicle sightings. I worked mostly on the backend, architecture, and authentication, while also helping with frontend development as part of the Calda team.
+      </p>
+
+      <h2>About me</h2>
       <p>
         I have been programming since the age 12, and since then I explored many different areas of software development, including game development, hardware, cybersecurity, DevOps, and more. Over time, I found myself leaning toward web development, with a particular focus on backend development.
       </p>
@@ -238,6 +263,8 @@
       <p>
         In the end, my goal is simple (but hard to achieve): to create high-quality software that helps people and benefits nature.
       </p>
+
+      <h2>Away from the keyboard</h2>
       <p>
         My way of life is to do things intentionally, which probably explains why I have so many different hobbies and why simple things often become small research projects.
       </p>
