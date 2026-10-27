@@ -280,19 +280,33 @@
         text-underline-offset: 0.3em;
       }
 
-      /* Photo peeks in on load, and leans in when you hover it */
-      .profile-img {
+      /* Photo peeks in on load, leans in when you hover it, and turns
+         liquid under the cursor (WebGL canvas drawn over the image) */
+      .profile {
         position: fixed;
         bottom: 0;
         right: 0;
         width: 350px;
-        object-fit: contain;
         transform-origin: bottom center;
         animation: peek 0.9s 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) both;
-        transition: transform 0.5s var(--ease);
+        transition: transform 0.8s var(--smooth);
       }
-      .profile-img:hover {
+      .profile:hover {
         transform: translateY(-8px) rotate(-3deg);
+      }
+      .profile img {
+        display: block;
+        width: 100%;
+      }
+      .profile canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+      .profile.gl img {
+        opacity: 0;
       }
       @keyframes peek {
         from { transform: translateY(100%); }
@@ -328,7 +342,7 @@
         .social-links {
           margin-top: 16px;
         }
-        .profile-img {
+        .profile {
           position: static;
           display: block;
           width: 200px;
@@ -344,7 +358,7 @@
           animation: none !important;
         }
         .site-title span,
-        .profile-img,
+        .profile,
         ul li::before,
         .theme-toggle::before {
           transform: none !important;
@@ -408,7 +422,7 @@
       </ul>
       </div>
     </main>
-    <img src="profile.png" class="profile-img" alt="Tim Rekelj" />
+    <div class="profile"><img src="profile.png" alt="Tim Rekelj" /></div>
     <script>
       const themeToggle = document.getElementById('theme-toggle');
       const html = document.documentElement;
@@ -426,6 +440,134 @@
 
       // Stagger the intro animation of content blocks
       document.querySelectorAll('.content > *').forEach((el, i) => el.style.setProperty('--i', i + 1));
+
+      // Profile photo goes liquid under the cursor: a small WebGL shader that
+      // bulges the image around the pointer and smears it along the movement
+      (function liquidPhoto() {
+        const wrap = document.querySelector('.profile');
+        const img = wrap.querySelector('img');
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        const canvas = document.createElement('canvas');
+        const gl = canvas.getContext('webgl', { premultipliedAlpha: true, alpha: true });
+        if (!gl) return;
+
+        const vert = `
+          attribute vec2 p;
+          varying vec2 uv;
+          void main() {
+            uv = vec2(p.x * 0.5 + 0.5, 0.5 - p.y * 0.5);
+            gl_Position = vec4(p, 0.0, 1.0);
+          }`;
+        const frag = `
+          precision mediump float;
+          uniform sampler2D tex;
+          uniform vec2 mouse, vel;
+          uniform float strength, aspect, time;
+          varying vec2 uv;
+          void main() {
+            vec2 d = uv - mouse;
+            d.x *= aspect;
+            float dist = length(d);
+            float f = smoothstep(0.3, 0.0, dist) * strength;
+            vec2 st = uv;
+            st -= (uv - mouse) * f * 0.3;                 // bulge
+            st -= vel * f * 2.0;                          // drag along movement
+            st += d / (dist + 1e-4) / vec2(aspect, 1.0)   // soft ripple
+                  * sin(dist * 45.0 - time * 3.0) * 0.003 * f;
+            gl_FragColor = texture2D(tex, st);
+          }`;
+        const compile = (type, src) => {
+          const sh = gl.createShader(type);
+          gl.shaderSource(sh, src);
+          gl.compileShader(sh);
+          return sh;
+        };
+        const prog = gl.createProgram();
+        gl.attachShader(prog, compile(gl.VERTEX_SHADER, vert));
+        gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, frag));
+        gl.linkProgram(prog);
+        if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
+        gl.useProgram(prog);
+
+        gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+        const loc = gl.getAttribLocation(prog, 'p');
+        gl.enableVertexAttribArray(loc);
+        gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+        const u = (name) => gl.getUniformLocation(prog, name);
+        const uMouse = u('mouse'), uVel = u('vel'), uStrength = u('strength'), uAspect = u('aspect'), uTime = u('time');
+
+        const state = { mx: 0.5, my: 0.5, tx: 0.5, ty: 0.5, vx: 0, vy: 0, s: 0, inside: false, raf: 0 };
+
+        function resize() {
+          const dpr = Math.min(devicePixelRatio || 1, 2);
+          canvas.width = Math.round(wrap.clientWidth * dpr);
+          canvas.height = Math.round(wrap.clientHeight * dpr);
+          gl.viewport(0, 0, canvas.width, canvas.height);
+          gl.uniform1f(uAspect, canvas.width / canvas.height);
+          draw(performance.now());
+        }
+
+        function draw(t) {
+          gl.uniform2f(uMouse, state.mx, state.my);
+          gl.uniform2f(uVel, state.vx, state.vy);
+          gl.uniform1f(uStrength, state.s);
+          gl.uniform1f(uTime, t / 1000);
+          gl.clearColor(0, 0, 0, 0);
+          gl.clear(gl.COLOR_BUFFER_BIT);
+          gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+        }
+
+        function tick(t) {
+          const px = state.mx, py = state.my;
+          state.mx += (state.tx - state.mx) * 0.12;
+          state.my += (state.ty - state.my) * 0.12;
+          state.vx += ((state.mx - px) - state.vx) * 0.2;
+          state.vy += ((state.my - py) - state.vy) * 0.2;
+          state.s += ((state.inside ? 1 : 0) - state.s) * 0.06;
+          draw(t);
+          const settled = !state.inside && state.s < 0.001;
+          if (settled) {
+            state.s = 0;
+            draw(t);
+            state.raf = 0;
+          } else {
+            state.raf = requestAnimationFrame(tick);
+          }
+        }
+
+        window.addEventListener('pointermove', (e) => {
+          const r = wrap.getBoundingClientRect();
+          const x = (e.clientX - r.left) / r.width;
+          const y = (e.clientY - r.top) / r.height;
+          state.inside = x >= 0 && x <= 1 && y >= 0 && y <= 1;
+          if (!state.inside) return;
+          if (!state.raf) {
+            if (state.s < 0.001) { state.mx = x; state.my = y; }
+            state.raf = requestAnimationFrame(tick);
+          }
+          state.tx = x;
+          state.ty = y;
+        });
+        document.addEventListener('pointerleave', () => { state.inside = false; });
+
+        function init() {
+          const tex = gl.createTexture();
+          gl.bindTexture(gl.TEXTURE_2D, tex);
+          gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+          gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+          wrap.appendChild(canvas);
+          new ResizeObserver(resize).observe(wrap);
+          resize();
+          wrap.classList.add('gl');
+        }
+        img.complete && img.naturalWidth ? init() : img.addEventListener('load', init);
+      })();
 
       // Theme switch spreads out as a circle from the toggle button
       themeToggle.addEventListener('click', (e) => {
