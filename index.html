@@ -18,6 +18,7 @@
         --fg: #141414;
         --muted: #8a8780;
         --ease: cubic-bezier(0.34, 1.56, 0.64, 1);
+        --smooth: cubic-bezier(0.22, 1, 0.36, 1);
         color-scheme: light;
       }
       @media (prefers-color-scheme: dark) {
@@ -66,7 +67,9 @@
         justify-content: space-between;
       }
 
-      /* Name: each letter squishes when hovered, neighbours follow a little */
+      /* Name: each letter squishes when hovered, neighbours follow in a soft falloff.
+         Squishing in is fairly quick, relaxing back is slow, so moving across
+         the name leaves a gentle wave behind the cursor. */
       .site-title {
         font-size: 4.5rem;
         font-weight: 800;
@@ -77,16 +80,31 @@
       }
       .site-title span {
         display: inline-block;
-        font-variation-settings: 'wght' 800, 'wdth' 100;
-        transition: font-variation-settings 0.5s var(--ease), transform 0.5s var(--ease);
+        font-weight: 800;
+        font-stretch: 100%;
+        transition:
+          font-weight 1.2s var(--smooth),
+          font-stretch 1.2s var(--smooth),
+          transform 1.2s var(--smooth);
       }
       .site-title span:hover {
-        font-variation-settings: 'wght' 200, 'wdth' 75;
+        font-weight: 200;
+        font-stretch: 75%;
         transform: translateY(-0.08em);
+        transition-duration: 0.7s;
       }
       .site-title span:has(+ span:hover),
       .site-title span:hover + span {
-        font-variation-settings: 'wght' 500, 'wdth' 88;
+        font-weight: 450;
+        font-stretch: 84%;
+        transform: translateY(-0.03em);
+        transition-duration: 0.8s;
+      }
+      .site-title span:has(+ span + span:hover),
+      .site-title span:hover + span + span {
+        font-weight: 650;
+        font-stretch: 92%;
+        transition-duration: 0.9s;
       }
 
       .social-links {
@@ -102,7 +120,7 @@
         display: inline-flex;
         align-items: baseline;
         gap: 2px;
-        transition: color 0.2s;
+        transition: color 0.4s var(--smooth);
       }
       .social-links a:hover {
         color: var(--c);
@@ -120,11 +138,11 @@
         display: inline-block;
       }
       .social-links a:hover .arrow::before {
-        animation: fly 0.45s ease-in-out;
+        animation: fly 0.7s var(--smooth);
       }
       @keyframes fly {
-        45% { transform: translate(110%, -110%); }
-        46% { transform: translate(-110%, 110%); }
+        40% { transform: translate(110%, -110%); animation-timing-function: steps(1); }
+        41% { transform: translate(-110%, 110%); animation-timing-function: var(--smooth); }
         100% { transform: translate(0, 0); }
       }
       .github { --c: #8250df; }
@@ -200,11 +218,16 @@
         background: linear-gradient(var(--c), var(--c)) no-repeat 0 100% / 100% 0.1em;
         -webkit-box-decoration-break: clone;
         box-decoration-break: clone;
-        transition: background-size 0.35s var(--ease), color 0.2s;
+        transition:
+          background-size 0.55s var(--smooth),
+          color 0.3s var(--smooth);
       }
       .content a[class]:hover {
         color: var(--on);
         background-size: 100% 100%;
+        transition:
+          background-size 0.6s var(--smooth),
+          color 0.35s var(--smooth) 0.12s;
       }
       .calda { --c: #ff3d00; }
       .pitchsafe { --c: #dc2626; }
@@ -236,7 +259,7 @@
       ul li::before {
         content: '→';
         color: var(--muted);
-        transition: transform 0.4s var(--ease), color 0.2s;
+        transition: transform 0.6s var(--smooth), color 0.4s var(--smooth);
       }
       ul li:has(a:hover)::before {
         transform: translateX(6px);
@@ -248,10 +271,13 @@
         text-decoration-thickness: 1px;
         text-underline-offset: 0.2em;
         text-decoration-color: var(--muted);
-        transition: text-decoration-color 0.2s;
+        transition:
+          text-decoration-color 0.4s var(--smooth),
+          text-underline-offset 0.4s var(--smooth);
       }
       ul li a:hover {
         text-decoration-color: currentColor;
+        text-underline-offset: 0.3em;
       }
 
       /* Photo peeks in on load, and leans in when you hover it */
@@ -309,11 +335,19 @@
           margin-left: auto;
         }
       }
+      /* Reduced motion: drop movement, but keep the gentle weight/colour fades
+         so hovers still feel smooth instead of snapping */
       @media (prefers-reduced-motion: reduce) {
         *,
-        *::before {
+        *::before,
+        ::view-transition-new(root) {
           animation: none !important;
-          transition: none !important;
+        }
+        .site-title span,
+        .profile-img,
+        ul li::before,
+        .theme-toggle::before {
+          transform: none !important;
         }
       }
     </style>
