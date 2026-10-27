@@ -83,28 +83,37 @@
         font-weight: 800;
         font-stretch: 100%;
         transition:
-          font-weight 1.2s var(--smooth),
-          font-stretch 1.2s var(--smooth),
-          transform 1.2s var(--smooth);
+          font-weight 0.8s var(--smooth),
+          font-stretch 0.8s var(--smooth),
+          transform 0.8s var(--smooth);
       }
-      .site-title span:hover {
+      .site-title span.on {
         font-weight: 200;
         font-stretch: 75%;
         transform: translateY(-0.08em);
-        transition-duration: 0.7s;
+        transition-duration: 0.45s;
       }
-      .site-title span:has(+ span:hover),
-      .site-title span:hover + span {
+      .site-title span:has(+ span.on),
+      .site-title span.on + span {
         font-weight: 450;
         font-stretch: 84%;
         transform: translateY(-0.03em);
-        transition-duration: 0.8s;
+        transition-duration: 0.5s;
       }
-      .site-title span:has(+ span + span:hover),
-      .site-title span:hover + span + span {
+      .site-title span:has(+ span + span.on),
+      .site-title span.on + span + span {
         font-weight: 650;
         font-stretch: 92%;
-        transition-duration: 0.9s;
+        transition-duration: 0.55s;
+      }
+      /* The space between the names is a span too, so hovering it keeps the
+         wave going (squishing "m" and "R") instead of letting everything relax.
+         The hovered letter (.on) is picked in JS from where letters sit at rest,
+         so letters shifting while they squish can't steal the hover. */
+      .site-title span.gap {
+        font-weight: 800 !important;
+        font-stretch: 100% !important;
+        transform: none !important;
       }
 
       .social-links {
@@ -206,7 +215,7 @@
         margin-bottom: 16px;
       }
 
-      /* Brand links: a thin underline that floods into a highlight on hover */
+      /* Brand links: a thin underline, and the coloured highlight fades in on hover */
       .content a[class] {
         --on: #fff;
         color: var(--c);
@@ -216,18 +225,16 @@
         margin: 0 -0.12em;
         border-radius: 0.15em;
         background: linear-gradient(var(--c), var(--c)) no-repeat 0 100% / 100% 0.1em;
+        background-color: transparent;
         -webkit-box-decoration-break: clone;
         box-decoration-break: clone;
         transition:
-          background-size 0.55s var(--smooth),
-          color 0.3s var(--smooth);
+          background-color 0.45s var(--smooth),
+          color 0.45s var(--smooth);
       }
       .content a[class]:hover {
         color: var(--on);
-        background-size: 100% 100%;
-        transition:
-          background-size 0.6s var(--smooth),
-          color 0.35s var(--smooth) 0.12s;
+        background-color: var(--c);
       }
       .calda { --c: #ff3d00; }
       .pitchsafe { --c: #dc2626; }
@@ -370,7 +377,7 @@
     <main>
       <header class="site-header">
       <!-- <a href="/" class="site-title">Tim Rekelj</a> -->
-      <div class="site-title" aria-label="Tim Rekelj"><span aria-hidden="true">T</span><span aria-hidden="true">i</span><span aria-hidden="true">m</span>&nbsp;<span aria-hidden="true">R</span><span aria-hidden="true">e</span><span aria-hidden="true">k</span><span aria-hidden="true">e</span><span aria-hidden="true">l</span><span aria-hidden="true">j</span></div>
+      <div class="site-title" aria-label="Tim Rekelj"><span aria-hidden="true">T</span><span aria-hidden="true">i</span><span aria-hidden="true">m</span><span class="gap" aria-hidden="true">&nbsp;</span><span aria-hidden="true">R</span><span aria-hidden="true">e</span><span aria-hidden="true">k</span><span aria-hidden="true">e</span><span aria-hidden="true">l</span><span aria-hidden="true">j</span></div>
       <div class="social-links">
         <a class="github" href="https://github.com/timrekelj" target="_blank">GitHub<span class="arrow"></span></a>
         <a class="linkedin" href="https://www.linkedin.com/in/tim-rekelj/" target="_blank">LinkedIn<span class="arrow"></span></a>
@@ -440,6 +447,34 @@
 
       // Stagger the intro animation of content blocks
       document.querySelectorAll('.content > *').forEach((el, i) => el.style.setProperty('--i', i + 1));
+
+      // Title: pick the letter under the cursor using the resting layout
+      (function titleHover() {
+        const title = document.querySelector('.site-title');
+        const letters = [...title.children];
+        let edges = [];
+        let current = null;
+        const measure = () => {
+          if (current) return;
+          title.style.minWidth = '';
+          title.style.minWidth = title.getBoundingClientRect().width + 'px';
+          edges = letters.map((el) => el.getBoundingClientRect().right - title.getBoundingClientRect().left);
+        };
+        const set = (el) => {
+          if (el === current) return;
+          current?.classList.remove('on');
+          el?.classList.add('on');
+          current = el;
+        };
+        document.fonts.ready.then(measure);
+        window.addEventListener('resize', measure);
+        title.addEventListener('pointermove', (e) => {
+          const x = e.clientX - title.getBoundingClientRect().left;
+          const i = edges.findIndex((right) => x < right);
+          set(letters[i === -1 ? letters.length - 1 : i]);
+        });
+        title.addEventListener('pointerleave', () => set(null));
+      })();
 
       // Profile photo goes liquid under the cursor: a small WebGL shader that
       // bulges the image around the pointer and smears it along the movement
